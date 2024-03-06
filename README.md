@@ -17,7 +17,7 @@ These algorithms are not all equivalent so don't just blindly pick the fastest o
 
 [MD5]: https://docs.ruby-lang.org/en/3.3/Digest/MD5.html
 [SHA1]: https://docs.ruby-lang.org/en/3.3/Digest/SHA1.html
-[SHA2]: https://docs.ruby-lang.org/en/3.3/Digest/SHA256.html
+[SHA2]: https://docs.ruby-lang.org/en/3.3/Digest/SHA2.html
 [SHA1]: https://docs.ruby-lang.org/en/3.3/Digest/SHA1.html
 [Zlib CRC32]: https://docs.ruby-lang.org/en/3.3/Zlib.html#method-c-crc32
 [digest-xxhash]: https://rubygems.org/gems/digest-xxhash
