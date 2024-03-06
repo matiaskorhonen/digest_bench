@@ -1,6 +1,6 @@
-# Hashing benchmarks for Ruby
+# Non-scientific hash benchmarks
 
-Benchmarks of various hash algorithms.
+Benchmarks of various hash algorithms with Ruby.
 
 ## Algorithms
 
