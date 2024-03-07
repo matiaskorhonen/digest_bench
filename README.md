@@ -11,7 +11,7 @@ Benchmarks of various hash algorithms with Ruby.
 * Gems:
   * [digest-xxhash][] (XXH32/XXH64/XXH3)
   * [murmurhash3][] (32/128)
-  * [cityhash][] (32/54/128)
+  * [cityhash][] (32/64/128)
 
 These algorithms are not all equivalent so don't just blindly pick the fastest one!
 
