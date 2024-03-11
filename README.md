@@ -24,7 +24,7 @@ These algorithms are not all equivalent so don't just blindly pick the fastest o
 [digest-xxhash]: https://rubygems.org/gems/digest-xxhash
 [murmurhash3]: https://rubygems.org/gems/murmurhash3
 [cityhash]: https://rubygems.org/gems/cityhash
-[openssl]: [Title](https://rubygems.org/gems/openssl)
+[openssl]: https://rubygems.org/gems/openssl
 
 ## More info
 
