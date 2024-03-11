@@ -3,6 +3,7 @@
 source "https://rubygems.org"
 
 gem "csv"
+gem "openssl", "~> 3.2"
 gem "digest-xxhash", "~> 0.2"
 gem "murmurhash3", "~> 0.1"
 gem "cityhash", "~> 0.9"

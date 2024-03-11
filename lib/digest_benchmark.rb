@@ -6,6 +6,7 @@ require "benchmark"
 require "digest/xxhash"
 require "murmurhash3"
 require "cityhash"
+require "openssl"
 require "tty-logger"
 
 class Integer
@@ -26,8 +27,9 @@ module DigestBenchmark
   class << self
     def preamble
       logger.info "Ruby", version: RUBY_VERSION
+      logger.info "OpenSSL (gem)", version: OpenSSL::VERSION
       logger.info "digest-xxhash", version: Digest::XXHash::VERSION
-      logger.info "MurmurHash3 version", version: MurmurHash3::VERSION
+      logger.info "MurmurHash3", version: MurmurHash3::VERSION
       logger.info "CityHash", version: CityHash::VERSION
     end
 
@@ -42,19 +44,25 @@ module DigestBenchmark
       logger.info "Running benchmarks", iterations: ITERATIONS
 
       Benchmark.bmbm do |bm|
-        bm.report("Digest::MD5")            { I.times { Digest::MD5.hexdigest(data) } }
-        bm.report("Digest::SHA1")           { I.times { Digest::SHA1.hexdigest(data) } }
-        bm.report("Digest::SHA256")         { I.times { Digest::SHA256.hexdigest(data) } }
-        bm.report("Digest::SHA512")         { I.times { Digest::SHA512.hexdigest(data) } }
-        bm.report("Zlib.crc32")             { I.times { Zlib.crc32(data).to_s(16) } }
-        bm.report("digest-xxhash (XXH32)")  { I.times { Digest::XXH32.hexdigest(data) } }
-        bm.report("digest-xxhash (XXH64)")  { I.times { Digest::XXH64.hexdigest(data) } }
-        bm.report("digest-xxhash (XXH3)")   { I.times { Digest::XXH3_128bits.hexdigest(data) } }
-        bm.report("murmurhash3 (32)")       { I.times { MurmurHash3::V32.str_hexdigest(data) } }
-        bm.report("murmurhash3 (128)")      { I.times { MurmurHash3::V128.str_hexdigest(data) } }
-        bm.report("cityhash (32)")          { I.times { CityHash.hash64(data).to_s(16) } }
-        bm.report("cityhash (64)")          { I.times { CityHash.hash64(data).to_s(16) } }
-        bm.report("cityhash (128)")         { I.times { CityHash.hash128(data).to_s(16) } }
+        bm.report("Digest::MD5")                { I.times { Digest::MD5.hexdigest(data) } }
+        bm.report("Digest::SHA1")               { I.times { Digest::SHA1.hexdigest(data) } }
+        bm.report("Digest::SHA256")             { I.times { Digest::SHA256.hexdigest(data) } }
+        bm.report("Digest::SHA512")             { I.times { Digest::SHA512.hexdigest(data) } }
+        bm.report("OpenSSL::Digest::MD5")       { I.times { OpenSSL::Digest::MD5.hexdigest(data) } }
+        bm.report("OpenSSL::Digest::SHA1")      { I.times { OpenSSL::Digest::SHA1.hexdigest(data) } }
+        bm.report("OpenSSL::Digest::SHA256")    { I.times { OpenSSL::Digest::SHA256.hexdigest(data) } }
+        bm.report("OpenSSL::Digest::SHA512")    { I.times { OpenSSL::Digest::SHA512.hexdigest(data) } }
+        bm.report("OpenSSL::Digest::SHA3-256")  { I.times { OpenSSL::Digest.digest("SHA3-256", data) } }
+        bm.report("OpenSSL::Digest::SHA3-512")  { I.times { OpenSSL::Digest.digest("SHA3-512", data) } }
+        bm.report("Zlib.crc32")                 { I.times { Zlib.crc32(data).to_s(16) } }
+        bm.report("digest-xxhash (XXH32)")      { I.times { Digest::XXH32.hexdigest(data) } }
+        bm.report("digest-xxhash (XXH64)")      { I.times { Digest::XXH64.hexdigest(data) } }
+        bm.report("digest-xxhash (XXH3)")       { I.times { Digest::XXH3_128bits.hexdigest(data) } }
+        bm.report("murmurhash3 (32)")           { I.times { MurmurHash3::V32.str_hexdigest(data) } }
+        bm.report("murmurhash3 (128)")          { I.times { MurmurHash3::V128.str_hexdigest(data) } }
+        bm.report("cityhash (32)")              { I.times { CityHash.hash64(data).to_s(16) } }
+        bm.report("cityhash (64)")              { I.times { CityHash.hash64(data).to_s(16) } }
+        bm.report("cityhash (128)")             { I.times { CityHash.hash128(data).to_s(16) } }
       end
     end
 

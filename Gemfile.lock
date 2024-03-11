@@ -5,6 +5,7 @@ GEM
     csv (3.2.8)
     digest-xxhash (0.2.7)
     murmurhash3 (0.1.7)
+    openssl (3.2.0)
     pastel (0.8.0)
       tty-color (~> 0.5)
     tty-color (0.6.0)
@@ -20,6 +21,7 @@ DEPENDENCIES
   csv
   digest-xxhash (~> 0.2)
   murmurhash3 (~> 0.1)
+  openssl (~> 3.2)
   tty-logger (~> 0.6)
 
 BUNDLED WITH
