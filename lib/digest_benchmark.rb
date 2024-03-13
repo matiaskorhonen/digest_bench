@@ -60,7 +60,7 @@ module DigestBenchmark
         bm.report("digest-xxhash (XXH3)")       { I.times { Digest::XXH3_128bits.hexdigest(data) } }
         bm.report("murmurhash3 (32)")           { I.times { MurmurHash3::V32.str_hexdigest(data) } }
         bm.report("murmurhash3 (128)")          { I.times { MurmurHash3::V128.str_hexdigest(data) } }
-        bm.report("cityhash (32)")              { I.times { CityHash.hash64(data).to_s(16) } }
+        bm.report("cityhash (32)")              { I.times { CityHash.hash32(data).to_s(16) } }
         bm.report("cityhash (64)")              { I.times { CityHash.hash64(data).to_s(16) } }
         bm.report("cityhash (128)")             { I.times { CityHash.hash128(data).to_s(16) } }
       end
